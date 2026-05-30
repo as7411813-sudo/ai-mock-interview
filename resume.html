@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Analyzer — InterviewAI</title>
+  <meta name="description" content="Upload your resume and get AI-powered skill analysis, gap detection, and personalized interview preparation.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="resume.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+<nav class="navbar scrolled" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><span>Interview<span class="gradient-text">AI</span></span></a>
+    <div class="nav-links"><a href="index.html">Home</a><a href="interview.html">Interview</a><a href="practice.html">Practice</a><a href="dashboard.html">Dashboard</a></div>
+    <div class="nav-actions"><a href="interview.html" class="btn btn-primary btn-sm">Start Interview</a></div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Resume <span class="gradient-text">Analyzer</span></h1>
+    <p>Paste your resume and let AI extract skills, identify gaps, and generate a tailored interview prep plan.</p>
+  </div>
+</div>
+
+<div class="resume-page container">
+  <!-- Upload Section -->
+  <div class="resume-upload-section" id="uploadSection">
+    <div class="upload-area glass-card" id="uploadArea">
+      <div class="upload-icon"><i class="fas fa-file-alt"></i></div>
+      <h3>Paste Your Resume</h3>
+      <p>Copy and paste your resume text below for AI analysis</p>
+      <textarea id="resumeText" placeholder="Paste your resume here...
+
+Example:
+John Doe — Software Engineer
+Experience: 2 years at TechCorp
+Skills: JavaScript, React, Node.js, Python, SQL
+Education: B.Tech Computer Science, XYZ University
+Projects: E-commerce platform, Chat application
+Achievements: Led team of 5, Improved performance by 40%"></textarea>
+      <div class="upload-actions">
+        <button class="btn btn-primary btn-lg" onclick="analyzeResume()"><i class="fas fa-search"></i> Analyze Resume</button>
+        <button class="btn btn-secondary" onclick="loadSample()"><i class="fas fa-magic"></i> Load Sample</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="analysis-loading" id="loadingSection" style="display:none;">
+    <div class="loading-spinner"></div>
+    <h3>Analyzing your resume...</h3>
+    <p>Extracting skills, experience, and generating insights</p>
+  </div>
+
+  <!-- Results -->
+  <div class="resume-results" id="resultsSection" style="display:none;">
+    <div class="results-top">
+      <h2><i class="fas fa-check-circle" style="color:var(--success)"></i> Analysis Complete</h2>
+      <button class="btn btn-secondary btn-sm" onclick="resetAnalysis()"><i class="fas fa-redo"></i> Analyze Another</button>
+    </div>
+
+    <!-- Profile Summary -->
+    <div class="profile-summary glass-card">
+      <div class="profile-header">
+        <div class="profile-avatar"><i class="fas fa-user"></i></div>
+        <div class="profile-info">
+          <h3 id="profileName">Candidate</h3>
+          <span id="profileRole" class="gradient-text">Software Engineer</span>
+        </div>
+        <div class="profile-score">
+          <div class="score-circle">
+            <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/><circle cx="50" cy="50" r="42" fill="none" stroke="url(#profGrad)" stroke-width="6" stroke-dasharray="264" stroke-dashoffset="264" id="profileCircle" stroke-linecap="round" transform="rotate(-90 50 50)"/><defs><linearGradient id="profGrad"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs></svg>
+            <span class="score-num" id="profileScoreNum">0</span>
+          </div>
+          <span class="score-lbl">Resume Score</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="analysis-grid">
+      <div class="analysis-card glass-card">
+        <h4><i class="fas fa-check" style="color:var(--success)"></i> Skills Detected</h4>
+        <div class="tags-list" id="skillsList"></div>
+      </div>
+      <div class="analysis-card glass-card">
+        <h4><i class="fas fa-exclamation-triangle" style="color:var(--warning)"></i> Skill Gaps</h4>
+        <div class="tags-list" id="gapsList"></div>
+      </div>
+      <div class="analysis-card glass-card">
+        <h4><i class="fas fa-star" style="color:var(--accent-2)"></i> Strengths</h4>
+        <ul id="strengthsList" class="insight-list"></ul>
+      </div>
+      <div class="analysis-card glass-card">
+        <h4><i class="fas fa-arrow-up" style="color:var(--accent-3)"></i> Improvements</h4>
+        <ul id="improvementsList" class="insight-list"></ul>
+      </div>
+    </div>
+
+    <!-- Recommended Interview -->
+    <div class="recommendation-section glass-card">
+      <h3><i class="fas fa-bullseye"></i> Recommended Interview Plan</h3>
+      <p>Based on your resume, here's a tailored interview practice plan:</p>
+      <div class="rec-rounds" id="recRounds"></div>
+      <div class="rec-actions">
+        <a href="interview.html" class="btn btn-primary"><i class="fas fa-play"></i> Start Tailored Interview</a>
+        <a href="roadmap.html" class="btn btn-secondary"><i class="fas fa-map"></i> View Career Roadmap</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="resume.js"></script>
+</body>
+</html>

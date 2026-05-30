@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Problems — InterviewAI</title>
+  <meta name="description" content="Practice DSA problems targeted to your interview weaknesses. Complete the learning loop.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="practice.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+<nav class="navbar scrolled"><div class="container">
+  <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><span>Interview<span class="gradient-text">AI</span></span></a>
+  <div class="nav-links"><a href="index.html">Home</a><a href="interview.html">Interview</a><a href="resume.html">Resume</a><a href="dashboard.html">Dashboard</a></div>
+  <div class="nav-actions"><a href="interview.html" class="btn btn-primary btn-sm">Start Interview</a></div>
+</div></nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Practice <span class="gradient-text">Problems</span></h1>
+    <p>Targeted problems based on your interview weaknesses. Complete them, then retest.</p>
+  </div>
+</div>
+
+<div class="practice-page container">
+  <!-- Weakness Banner -->
+  <div class="weakness-banner glass-card" id="weaknessBanner">
+    <div class="banner-icon"><i class="fas fa-crosshairs"></i></div>
+    <div class="banner-text">
+      <h3>Targeted Practice Mode</h3>
+      <p id="bannerMessage">Based on your interviews, we've highlighted problems in your weak areas.</p>
+    </div>
+    <a href="interview.html" class="btn btn-primary btn-sm"><i class="fas fa-redo"></i> Retest</a>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="practice-stats">
+    <div class="pstat glass-card">
+      <span class="pstat-val" id="totalProblems">0</span>
+      <span class="pstat-lbl">Total Problems</span>
+    </div>
+    <div class="pstat glass-card">
+      <span class="pstat-val" id="completedProblems">0</span>
+      <span class="pstat-lbl">Completed</span>
+    </div>
+    <div class="pstat glass-card">
+      <span class="pstat-val" id="completionRate">0%</span>
+      <span class="pstat-lbl">Completion Rate</span>
+    </div>
+    <div class="pstat glass-card">
+      <span class="pstat-val" id="streakCount">0</span>
+      <span class="pstat-lbl">Day Streak 🔥</span>
+    </div>
+  </div>
+
+  <!-- Topic Filter -->
+  <div class="topic-filters" id="topicFilters">
+    <button class="topic-btn active" data-topic="all" onclick="filterTopic('all', this)">All Topics</button>
+  </div>
+
+  <!-- Progress by Topic -->
+  <div class="topic-progress" id="topicProgress"></div>
+
+  <!-- Problems List -->
+  <div class="problems-list" id="problemsList"></div>
+</div>
+
+<script src="practice.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Roadmap — InterviewAI</title>
+  <meta name="description" content="AI-generated personalized career roadmap based on your interview performance and skill gaps.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="roadmap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+<nav class="navbar scrolled"><div class="container">
+  <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><span>Interview<span class="gradient-text">AI</span></span></a>
+  <div class="nav-links"><a href="index.html">Home</a><a href="interview.html">Interview</a><a href="practice.html">Practice</a><a href="dashboard.html">Dashboard</a></div>
+  <div class="nav-actions"><a href="interview.html" class="btn btn-primary btn-sm">Start Interview</a></div>
+</div></nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>AI Career <span class="gradient-text">Roadmap</span></h1>
+    <p>Your personalized weekly study plan generated from interview performance and skill gaps.</p>
+  </div>
+</div>
+
+<div class="roadmap-page container">
+  <!-- Weakness Summary -->
+  <div class="weakness-summary glass-card">
+    <h3><i class="fas fa-exclamation-circle" style="color:var(--warning)"></i> Detected Weak Areas</h3>
+    <div class="weak-tags" id="weakTags"></div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="roadmap-timeline" id="roadmapTimeline"></div>
+
+  <!-- Resources -->
+  <div class="resources-section">
+    <h2><i class="fas fa-book" style="color:var(--accent-2)"></i> Recommended Resources</h2>
+    <div class="resources-grid" id="resourcesGrid"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="roadmap-cta glass-card">
+    <h3>Ready to test your progress?</h3>
+    <p>After completing your weekly plan, take a mock interview to measure improvement.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="interview.html" class="btn btn-primary"><i class="fas fa-play"></i> Take Mock Interview</a>
+      <a href="practice.html" class="btn btn-secondary"><i class="fas fa-code"></i> Practice Problems</a>
+    </div>
+  </div>
+</div>
+
+<script src="roadmap.js"></script>
+</body>
+</html>

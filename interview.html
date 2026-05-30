@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Interview — InterviewAI</title>
+  <meta name="description" content="Multi-round AI-powered mock interview: DSA, System Design, Behavioral, and HR rounds with company-specific patterns.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="interview.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+<!-- Top Bar -->
+<div class="interview-topbar">
+  <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><span>Interview<span class="gradient-text">AI</span></span></a>
+  <div class="topbar-info">
+    <div class="session-badge" id="sessionType"><i class="fas fa-code"></i> Technical Interview</div>
+    <div class="round-badge" id="roundBadge" style="display:none;"><i class="fas fa-layer-group"></i> <span id="roundLabel">Round 1/4</span></div>
+    <div class="timer" id="timer"><i class="fas fa-clock"></i> <span id="timerDisplay">00:00</span></div>
+  </div>
+  <div class="topbar-actions">
+    <button class="btn btn-secondary btn-sm" onclick="endInterview()"><i class="fas fa-stop"></i> End Session</button>
+  </div>
+</div>
+
+<!-- Setup Screen -->
+<div class="setup-screen" id="setupScreen">
+  <div class="setup-container">
+    <div class="setup-header">
+      <h1>Configure Your <span class="gradient-text">Interview</span></h1>
+      <p>Choose your interview mode, company, and preferences.</p>
+    </div>
+
+    <!-- Mode Selection -->
+    <div class="mode-selection">
+      <h3 class="mode-title">Interview Mode</h3>
+      <div class="mode-grid">
+        <div class="mode-card glass-card active" data-mode="single" onclick="selectMode('single', this)">
+          <span class="mode-icon">🎯</span>
+          <h4>Single Round</h4>
+          <p>Pick one interview type and dive deep</p>
+        </div>
+        <div class="mode-card glass-card" data-mode="full" onclick="selectMode('full', this)">
+          <span class="mode-icon">🔥</span>
+          <h4>Full Pipeline</h4>
+          <p>DSA → System Design → Behavioral → HR</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="setup-grid">
+      <div class="setup-card glass-card" id="typeCard">
+        <h3><i class="fas fa-briefcase"></i> Interview Type</h3>
+        <div class="setup-options" id="typeOptions">
+          <button class="setup-option active" data-value="technical" onclick="selectOption(this,'typeOptions')"><span class="opt-icon">💻</span><span>DSA / Technical</span></button>
+          <button class="setup-option" data-value="system-design" onclick="selectOption(this,'typeOptions')"><span class="opt-icon">🏗️</span><span>System Design</span></button>
+          <button class="setup-option" data-value="behavioral" onclick="selectOption(this,'typeOptions')"><span class="opt-icon">🧠</span><span>Behavioral</span></button>
+          <button class="setup-option" data-value="hr" onclick="selectOption(this,'typeOptions')"><span class="opt-icon">🎯</span><span>HR Round</span></button>
+        </div>
+      </div>
+      <div class="setup-card glass-card">
+        <h3><i class="fas fa-layer-group"></i> Difficulty</h3>
+        <div class="setup-options" id="diffOptions">
+          <button class="setup-option" data-value="easy" onclick="selectOption(this,'diffOptions')"><span class="opt-icon">🟢</span><span>Easy</span></button>
+          <button class="setup-option active" data-value="medium" onclick="selectOption(this,'diffOptions')"><span class="opt-icon">🟡</span><span>Medium</span></button>
+          <button class="setup-option" data-value="hard" onclick="selectOption(this,'diffOptions')"><span class="opt-icon">🔴</span><span>Hard</span></button>
+        </div>
+      </div>
+      <div class="setup-card glass-card full-width">
+        <h3><i class="fas fa-building"></i> Target Company</h3>
+        <div class="setup-options" id="companyOptions">
+          <button class="setup-option active" data-value="general" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">🌐</span><span>General</span></button>
+          <button class="setup-option" data-value="google" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">🔍</span><span>Google</span></button>
+          <button class="setup-option" data-value="amazon" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">📦</span><span>Amazon</span></button>
+          <button class="setup-option" data-value="microsoft" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">🪟</span><span>Microsoft</span></button>
+          <button class="setup-option" data-value="meta" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">👤</span><span>Meta</span></button>
+          <button class="setup-option" data-value="uber" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">🚗</span><span>Uber</span></button>
+          <button class="setup-option" data-value="atlassian" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">🔵</span><span>Atlassian</span></button>
+          <button class="setup-option" data-value="apple" onclick="selectOption(this,'companyOptions')"><span class="opt-icon">🍎</span><span>Apple</span></button>
+        </div>
+      </div>
+      <div class="setup-card glass-card">
+        <h3><i class="fas fa-user"></i> Your Role</h3>
+        <input type="text" class="setup-input" id="roleInput" placeholder="e.g. SDE-1, SDE Intern, PM..." value="Software Engineer">
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg" onclick="startInterview()" style="margin-top:32px;"><i class="fas fa-play"></i> Start Interview</button>
+  </div>
+</div>
+
+<!-- Interview Screen -->
+<div class="interview-screen" id="interviewScreen" style="display:none;">
+  <div class="interview-layout">
+    <div class="chat-area">
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-area">
+        <div class="input-wrapper">
+          <textarea id="userInput" placeholder="Type your answer here..." rows="3" onkeydown="handleKeyDown(event)"></textarea>
+          <div class="input-actions">
+            <span class="char-count" id="charCount">0 chars</span>
+            <button class="btn btn-primary btn-sm" id="sendBtn" onclick="sendAnswer()"><i class="fas fa-paper-plane"></i> Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="interview-sidebar">
+      <div class="sidebar-card glass-card">
+        <h4><i class="fas fa-signal"></i> Live Score</h4>
+        <div class="score-ring">
+          <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/><circle cx="60" cy="60" r="52" fill="none" stroke="url(#scoreGrad)" stroke-width="8" stroke-dasharray="327" stroke-dashoffset="327" stroke-linecap="round" id="scoreCircle" transform="rotate(-90 60 60)"/><defs><linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs></svg>
+          <div class="score-value" id="scoreValue">0</div>
+        </div>
+      </div>
+      <div class="sidebar-card glass-card">
+        <h4><i class="fas fa-list-ol"></i> Progress</h4>
+        <div class="progress-info"><span id="questionNum">Question 0 of 5</span><div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div></div>
+      </div>
+      <div class="sidebar-card glass-card">
+        <h4><i class="fas fa-lightbulb"></i> Tips</h4>
+        <div class="tips-area" id="tipsArea"><p class="tip-text">Start your interview to receive AI-powered tips!</p></div>
+      </div>
+      <div class="sidebar-card glass-card">
+        <h4><i class="fas fa-chart-bar"></i> Metrics</h4>
+        <div class="metrics-grid">
+          <div class="metric"><div class="metric-label">Clarity</div><div class="metric-bar"><div class="metric-fill" id="metricClarity" style="width:0%"></div></div></div>
+          <div class="metric"><div class="metric-label">Relevance</div><div class="metric-bar"><div class="metric-fill" id="metricRelevance" style="width:0%"></div></div></div>
+          <div class="metric"><div class="metric-label">Depth</div><div class="metric-bar"><div class="metric-fill" id="metricDepth" style="width:0%"></div></div></div>
+          <div class="metric"><div class="metric-label">Confidence</div><div class="metric-bar"><div class="metric-fill" id="metricConfidence" style="width:0%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Results Screen -->
+<div class="results-screen" id="resultsScreen" style="display:none;">
+  <div class="results-container">
+    <div class="results-header">
+      <div class="results-score-big">
+        <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/><circle cx="100" cy="100" r="88" fill="none" stroke="url(#resGrad)" stroke-width="10" stroke-dasharray="553" stroke-dashoffset="553" stroke-linecap="round" id="resultCircle" transform="rotate(-90 100 100)"/><defs><linearGradient id="resGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs></svg>
+        <div class="results-score-text"><span class="big-score" id="finalScore">0</span><span class="score-label">Overall Score</span></div>
+      </div>
+      <h2>Interview <span class="gradient-text">Complete!</span></h2>
+      <p id="resultsSummary">Here's your detailed performance breakdown.</p>
+    </div>
+    <!-- Round Scores (for full pipeline) -->
+    <div class="round-scores" id="roundScores" style="display:none;"></div>
+    <div class="results-grid">
+      <div class="result-card glass-card">
+        <div class="result-icon" style="color:var(--success)"><i class="fas fa-check-circle"></i></div>
+        <h4>Strengths</h4><ul id="strengthsList"></ul>
+      </div>
+      <div class="result-card glass-card">
+        <div class="result-icon" style="color:var(--warning)"><i class="fas fa-exclamation-triangle"></i></div>
+        <h4>Areas to Improve</h4><ul id="weaknessList"></ul>
+      </div>
+      <div class="result-card glass-card">
+        <div class="result-icon" style="color:var(--accent-2)"><i class="fas fa-star"></i></div>
+        <h4>Recommendations</h4><ul id="recommendList"></ul>
+      </div>
+    </div>
+    <div class="results-actions">
+      <a href="interview.html" class="btn btn-primary btn-lg"><i class="fas fa-redo"></i> Practice Again</a>
+      <a href="practice.html" class="btn btn-secondary btn-lg"><i class="fas fa-code"></i> Practice Problems</a>
+      <a href="roadmap.html" class="btn btn-secondary btn-lg"><i class="fas fa-map"></i> Career Roadmap</a>
+      <a href="dashboard.html" class="btn btn-secondary btn-lg"><i class="fas fa-chart-line"></i> Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<script src="interview.js"></script>
+</body>
+</html>

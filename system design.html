@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Design Evaluator — InterviewAI</title>
+  <meta name="description" content="Design real systems like WhatsApp, YouTube, URL Shortener and get AI evaluation on scalability, caching, databases, and more.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sysdesign.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+<nav class="navbar scrolled"><div class="container">
+  <a href="index.html" class="nav-logo"><div class="logo-icon"><i class="fas fa-bolt"></i></div><span>Interview<span class="gradient-text">AI</span></span></a>
+  <div class="nav-links"><a href="index.html">Home</a><a href="interview.html">Interview</a><a href="practice.html">Practice</a><a href="dashboard.html">Dashboard</a></div>
+  <div class="nav-actions"><a href="interview.html" class="btn btn-primary btn-sm">Start Interview</a></div>
+</div></nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>System Design <span class="gradient-text">Evaluator</span></h1>
+    <p>Design real-world systems. AI evaluates your scalability, caching, database choices, and architecture.</p>
+  </div>
+</div>
+
+<div class="sysdesign-page container">
+  <!-- System Picker -->
+  <div class="system-picker" id="systemPicker">
+    <h3>Choose a System to Design</h3>
+    <div class="system-grid" id="systemGrid"></div>
+  </div>
+
+  <!-- Design Form -->
+  <div class="design-form" id="designForm" style="display:none;">
+    <div class="form-header">
+      <button class="btn btn-secondary btn-sm" onclick="backToPicker()"><i class="fas fa-arrow-left"></i> Back</button>
+      <h2 id="designTitle">Design: WhatsApp</h2>
+    </div>
+
+    <div class="form-sections">
+      <div class="form-section glass-card">
+        <h4><i class="fas fa-list-check"></i> Functional Requirements</h4>
+        <p>List the core features the system must support.</p>
+        <textarea id="funcReq" rows="4" placeholder="e.g. Users can send text messages, create groups, share media..."></textarea>
+      </div>
+      <div class="form-section glass-card">
+        <h4><i class="fas fa-gauge-high"></i> Non-Functional Requirements</h4>
+        <p>Define scalability, latency, availability targets.</p>
+        <textarea id="nonFuncReq" rows="3" placeholder="e.g. Support 1B users, <100ms message delivery, 99.99% uptime..."></textarea>
+      </div>
+      <div class="form-section glass-card">
+        <h4><i class="fas fa-sitemap"></i> High-Level Architecture</h4>
+        <p>Describe the main components and how they interact.</p>
+        <textarea id="architecture" rows="5" placeholder="e.g. Load Balancer → API Gateway → Message Service → WebSocket servers → Database..."></textarea>
+      </div>
+      <div class="form-section glass-card">
+        <h4><i class="fas fa-database"></i> Database Design</h4>
+        <p>What databases will you use and why? Describe the schema.</p>
+        <textarea id="database" rows="4" placeholder="e.g. PostgreSQL for user data, Cassandra for messages (write-heavy), Redis for online status..."></textarea>
+      </div>
+      <div class="form-section glass-card">
+        <h4><i class="fas fa-bolt"></i> Caching Strategy</h4>
+        <p>How will you use caching to improve performance?</p>
+        <textarea id="caching" rows="3" placeholder="e.g. Redis cache for recent messages, CDN for media, client-side caching..."></textarea>
+      </div>
+      <div class="form-section glass-card">
+        <h4><i class="fas fa-server"></i> Scalability & Load Balancing</h4>
+        <p>How does the system handle millions of concurrent users?</p>
+        <textarea id="scaling" rows="4" placeholder="e.g. Horizontal scaling with auto-scaling groups, consistent hashing for message routing, message queue (Kafka)..."></textarea>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg" onclick="submitDesign()" style="margin-top:24px;">
+      <i class="fas fa-search"></i> Evaluate My Design
+    </button>
+  </div>
+
+  <!-- Loading -->
+  <div class="eval-loading" id="evalLoading" style="display:none;">
+    <div class="loading-spinner"></div>
+    <h3>Evaluating your system design...</h3>
+    <p>Analyzing architecture, scalability, and trade-offs</p>
+  </div>
+
+  <!-- Results -->
+  <div class="eval-results" id="evalResults" style="display:none;">
+    <div class="eval-header">
+      <h2><i class="fas fa-check-circle" style="color:var(--success)"></i> Evaluation Complete</h2>
+      <button class="btn btn-secondary btn-sm" onclick="backToPicker()"><i class="fas fa-redo"></i> Try Another</button>
+    </div>
+
+    <!-- Overall Score -->
+    <div class="overall-score glass-card">
+      <div class="score-visual">
+        <svg viewBox="0 0 160 160" width="140" height="140">
+          <circle cx="80" cy="80" r="68" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+          <circle cx="80" cy="80" r="68" fill="none" stroke="url(#evalGrad)" stroke-width="8"
+            stroke-dasharray="427" stroke-dashoffset="427" id="evalCircle" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+          <defs><linearGradient id="evalGrad"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs>
+        </svg>
+        <div class="score-center">
+          <span class="score-big" id="evalScoreNum">0</span>
+          <span class="score-sub">Overall</span>
+        </div>
+      </div>
+      <div class="score-breakdown" id="scoreBreakdown"></div>
+    </div>
+
+    <!-- Dimension Scores -->
+    <div class="dimension-grid" id="dimensionGrid"></div>
+
+    <!-- Expert Solution -->
+    <div class="expert-section glass-card">
+      <div class="expert-header" onclick="toggleExpert()">
+        <h3><i class="fas fa-lightbulb" style="color:var(--warning)"></i> Expert Solution</h3>
+        <i class="fas fa-chevron-down" id="expertChevron"></i>
+      </div>
+      <div class="expert-body" id="expertBody" style="display:none;"></div>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="interview.html" class="btn btn-primary"><i class="fas fa-play"></i> Practice System Design Interview</a>
+      <a href="roadmap.html" class="btn btn-secondary"><i class="fas fa-map"></i> View Roadmap</a>
+    </div>
+  </div>
+</div>
+
+<script src="sysdesign.js"></script>
+</body>
+</html>

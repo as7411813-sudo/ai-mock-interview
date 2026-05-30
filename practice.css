@@ -1,0 +1,85 @@
+.practice-page { padding-bottom: 80px; }
+
+.weakness-banner {
+  display: flex; align-items: center; gap: 20px; padding: 24px 28px; margin-bottom: 28px;
+}
+.banner-icon { font-size: 1.6rem; color: var(--accent-2); }
+.banner-text { flex: 1; }
+.banner-text h3 { font-size: 1rem; margin-bottom: 2px; }
+.banner-text p { font-size: 0.85rem; color: var(--text-muted); }
+
+.practice-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px;
+}
+.pstat { padding: 20px; text-align: center; }
+.pstat-val { font-family: 'Outfit'; font-size: 1.6rem; font-weight: 800; display: block; color: var(--accent-2); }
+.pstat-lbl { font-size: 0.78rem; color: var(--text-muted); }
+
+.topic-filters {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+}
+.topic-btn {
+  padding: 8px 18px; border-radius: 50px; font-size: 0.82rem; font-weight: 600;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  color: var(--text-secondary); cursor: pointer; transition: var(--transition);
+}
+.topic-btn:hover { border-color: var(--accent-1); color: var(--text-primary); }
+.topic-btn.active { background: rgba(124,58,237,0.15); border-color: var(--accent-1); color: var(--accent-2); }
+.topic-btn.weak {
+  background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.3); color: var(--warning);
+}
+.topic-btn.weak::after { content: ' ⚠'; }
+
+.topic-progress {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;
+  margin-bottom: 32px;
+}
+.topic-prog-card { padding: 18px; border-radius: var(--radius-sm); background: var(--bg-glass); border: 1px solid var(--border-glass); }
+.topic-prog-card.weak-topic { border-color: rgba(245,158,11,0.3); }
+.topic-prog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.topic-prog-header span:first-child { font-size: 0.88rem; font-weight: 600; }
+.topic-prog-header span:last-child { font-size: 0.78rem; color: var(--text-muted); }
+.topic-prog-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+.topic-prog-fill { height: 100%; border-radius: 3px; background: var(--accent-gradient); transition: width 0.8s ease; }
+.topic-prog-fill.weak-fill { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+.weak-badge { font-size: 0.7rem; color: var(--warning); margin-left: 6px; }
+
+.problems-list { display: flex; flex-direction: column; gap: 12px; }
+.problem-item {
+  display: flex; align-items: center; gap: 16px; padding: 18px 24px;
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm); transition: var(--transition); cursor: pointer;
+}
+.problem-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+.problem-item.completed { opacity: 0.6; }
+.problem-check {
+  width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border-glass);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: var(--transition); font-size: 0.7rem; color: transparent;
+}
+.problem-item.completed .problem-check {
+  background: var(--success); border-color: var(--success); color: #fff;
+}
+.problem-info { flex: 1; }
+.problem-title { font-size: 0.92rem; font-weight: 600; margin-bottom: 3px; }
+.problem-meta { display: flex; gap: 12px; font-size: 0.78rem; color: var(--text-muted); }
+.diff-label { font-weight: 600; }
+.diff-label.easy { color: var(--success); }
+.diff-label.medium { color: var(--warning); }
+.diff-label.hard { color: var(--danger); }
+.problem-topic-tag {
+  padding: 3px 10px; border-radius: 50px; font-size: 0.72rem; font-weight: 600;
+  background: rgba(124,58,237,0.1); color: var(--accent-2);
+}
+.problem-link {
+  padding: 6px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+  background: rgba(99,102,241,0.1); color: var(--accent-3); text-decoration: none;
+  transition: var(--transition);
+}
+.problem-link:hover { background: rgba(99,102,241,0.2); }
+
+@media (max-width: 768px) {
+  .practice-stats { grid-template-columns: repeat(2, 1fr); }
+  .weakness-banner { flex-direction: column; text-align: center; }
+  .problem-item { flex-wrap: wrap; }
+}

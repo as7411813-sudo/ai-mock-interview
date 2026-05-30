@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewAI — AI-Powered Mock Interview Platform</title>
+    <meta name="description"
+        content="Ace your next interview with AI-powered mock interviews, resume analysis, DSA practice, system design evaluation, and personalized career roadmaps.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                <span>Interview<span class="gradient-text">AI</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#features">Features</a>
+                <a href="resume.html">Resume Analysis</a>
+                <a href="practice.html">Practice</a>
+                <a href="system-design-eval.html">System Design</a>
+                <a href="roadmap.html">Roadmap</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+                <a href="interview.html" class="btn btn-primary btn-sm">Start Interview</a>
+                <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge"><span class="pulse"></span> AI-Powered Platform</div>
+                <h1 class="hero-title">Your Complete <span class="gradient-text">Interview Coach</span></h1>
+                <p class="hero-description">
+                    Resume analysis → Company-specific mock interviews → Weakness detection → Practice problems → Career
+                    roadmap. The full loop to land your dream job.
+                </p>
+                <div class="hero-actions">
+                    <a href="interview.html" class="btn btn-primary btn-lg"><i class="fas fa-play"></i> Start Free
+                        Interview</a>
+                    <a href="resume.html" class="btn btn-secondary btn-lg"><i class="fas fa-file-alt"></i> Analyze
+                        Resume</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="stat-value gradient-text" data-target="50000">0</div>
+                        <div class="stat-label">Interviews Completed</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="stat-value gradient-text" data-target="94">0</div>
+                        <div class="stat-label">Success Rate %</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="stat-value gradient-text" data-target="500">0</div>
+                        <div class="stat-label">Companies Covered</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="interview-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot"></div>
+                        <div class="preview-dot"></div>
+                        <div class="preview-dot"></div>
+                        <span>InterviewAI Session</span>
+                    </div>
+                    <div class="preview-body">
+                        <div class="preview-message">
+                            <div class="preview-avatar ai">AI</div>
+                            <div class="preview-text"><strong>Tell me about a time you led a team through a challenging
+                                    project.</strong> What was your approach?</div>
+                        </div>
+                        <div class="preview-message">
+                            <div class="preview-avatar user">You</div>
+                            <div class="preview-text">In my last role, I led a cross-functional team of 8 to deliver a
+                                critical product launch under a tight 6-week deadline...</div>
+                        </div>
+                        <div class="preview-message">
+                            <div class="preview-avatar ai">AI</div>
+                            <div class="preview-text"><strong>Great use of the STAR method!</strong> Your answer shows
+                                leadership. Try adding specific metrics to strengthen impact. <span
+                                    style="color:var(--success)">Score: 8.5/10</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Flow -->
+    <section class="section" id="platform-flow" style="background:var(--bg-secondary);">
+        <div class="container">
+            <div class="reveal" style="text-align:center;">
+                <div class="section-label"><i class="fas fa-route"></i> The Complete Loop</div>
+                <h2 class="section-title">One Platform, <span class="gradient-text">Complete Preparation</span></h2>
+                <p class="section-subtitle" style="margin:0 auto;">Unlike other tools that only cover one aspect, we
+                    connect everything into a learning loop.</p>
+            </div>
+            <div class="flow-pipeline">
+                <div class="flow-step glass-card reveal">
+                    <div class="flow-icon">📄</div>
+                    <h3>Resume Analysis</h3>
+                    <p>Upload your resume, AI extracts skills & gaps</p>
+                </div>
+                <div class="flow-arrow reveal"><i class="fas fa-chevron-right"></i></div>
+                <div class="flow-step glass-card reveal">
+                    <div class="flow-icon">🎯</div>
+                    <h3>Mock Interview</h3>
+                    <p>DSA + System Design + Behavioral + HR rounds</p>
+                </div>
+                <div class="flow-arrow reveal"><i class="fas fa-chevron-right"></i></div>
+                <div class="flow-step glass-card reveal">
+                    <div class="flow-icon">📊</div>
+                    <h3>Weakness Detection</h3>
+                    <p>AI identifies your weak areas automatically</p>
+                </div>
+                <div class="flow-arrow reveal"><i class="fas fa-chevron-right"></i></div>
+                <div class="flow-step glass-card reveal">
+                    <div class="flow-icon">💻</div>
+                    <h3>Practice Problems</h3>
+                    <p>Targeted problems based on your weaknesses</p>
+                </div>
+                <div class="flow-arrow reveal"><i class="fas fa-chevron-right"></i></div>
+                <div class="flow-step glass-card reveal">
+                    <div class="flow-icon">🗺️</div>
+                    <h3>Career Roadmap</h3>
+                    <p>Personalized weekly study plan to improve</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label"><i class="fas fa-sparkles"></i> Features</div>
+                <h2 class="section-title">Everything You Need to <span class="gradient-text">Succeed</span></h2>
+                <p class="section-subtitle">Six powerful modules working together as your AI interview coach.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Resume Analyzer</h3>
+                    <p>Upload your resume and get AI-powered skill extraction, gap analysis, and personalized interview
+                        questions.</p>
+                </div>
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-icon"><i class="fas fa-building"></i></div>
+                    <h3>Company-Specific Prep</h3>
+                    <p>Practice with patterns from Google, Amazon, Microsoft, Uber, Atlassian and more. AI mimics real
+                        company interviews.</p>
+                </div>
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-icon"><i class="fas fa-code"></i></div>
+                    <h3>DSA Practice Loop</h3>
+                    <p>Detected weakness in Trees? Get targeted problems. Complete them. Retest. A full learning cycle.
+                    </p>
+                </div>
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>System Design Evaluator</h3>
+                    <p>Design WhatsApp, YouTube, or URL Shortener. AI evaluates scalability, caching, DB choices & load
+                        balancing.</p>
+                </div>
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>AI Career Roadmap</h3>
+                    <p>Weak in Graphs & DP? Get a personalized weekly study plan. Week 1: Graphs → Week 2: DP → Week 3:
+                        DBMS.</p>
+                </div>
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Progress Tracking</h3>
+                    <p>Watch your scores climb from Interview #1 (52) to #10 (81). Detailed improvement graphs &
+                        milestone badges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Specific -->
+    <section class="section" id="companies" style="background:var(--bg-secondary);">
+        <div class="container">
+            <div class="reveal" style="text-align:center;">
+                <div class="section-label"><i class="fas fa-bullseye"></i> Company-Specific</div>
+                <h2 class="section-title">Prepare for <span class="gradient-text">Top Companies</span></h2>
+                <p class="section-subtitle" style="margin:0 auto;">AI generates company-specific question patterns and
+                    evaluation criteria.</p>
+            </div>
+            <div class="companies-grid">
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">🔍</span>
+                    <h3>Google</h3>
+                    <span class="company-role">SDE Intern / L3 / L4</span>
+                </div>
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">📦</span>
+                    <h3>Amazon</h3>
+                    <span class="company-role">SDE-1 / SDE-2</span>
+                </div>
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">🪟</span>
+                    <h3>Microsoft</h3>
+                    <span class="company-role">SDE / SDE-2</span>
+                </div>
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">👤</span>
+                    <h3>Meta</h3>
+                    <span class="company-role">E3 / E4 / E5</span>
+                </div>
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">🚗</span>
+                    <h3>Uber</h3>
+                    <span class="company-role">SDE-1 / SDE-2</span>
+                </div>
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">🔵</span>
+                    <h3>Atlassian</h3>
+                    <span class="company-role">SDE / Senior SDE</span>
+                </div>
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">🍎</span>
+                    <h3>Apple</h3>
+                    <span class="company-role">ICT2 / ICT3</span>
+                </div>
+                <div class="company-card glass-card reveal" onclick="window.location='interview.html'">
+                    <span class="company-logo">🎬</span>
+                    <h3>Netflix</h3>
+                    <span class="company-role">Senior SDE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="reveal" style="text-align:center;">
+                <div class="section-label"><i class="fas fa-quote-left"></i> Testimonials</div>
+                <h2 class="section-title">Loved by <span class="gradient-text">Thousands</span></h2>
+                <p class="section-subtitle" style="margin:0 auto;">Real stories from candidates who landed their dream
+                    jobs.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card glass-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The resume analyzer found gaps I didn't know I had. After 2 weeks of
+                        the practice loop, I cracked Google SDE Intern!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SP</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah Park</h4><span>SDE Intern @ Google</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The system design evaluator is incredible. I designed WhatsApp and got
+                        feedback on every aspect — scalability, caching, the works."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MR</div>
+                        <div class="testimonial-info">
+                            <h4>Marcus Rodriguez</h4><span>SDE-1 @ Amazon</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"My score went from 52 to 89 in 3 weeks. The AI roadmap knew exactly
+                        what topics I needed to focus on. Absolute game-changer."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JL</div>
+                        <div class="testimonial-info">
+                            <h4>Jessica Liu</h4><span>SDE @ Microsoft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing" style="background:var(--bg-secondary);">
+        <div class="container">
+            <div class="reveal" style="text-align:center;">
+                <div class="section-label"><i class="fas fa-tag"></i> Pricing</div>
+                <h2 class="section-title">Affordable <span class="gradient-text">Plans</span></h2>
+                <p class="section-subtitle" style="margin:0 auto;">Built for students. Start free, upgrade when ready.
+                </p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card glass-card reveal">
+                    <h3>Free</h3>
+                    <div class="price">$0<span>/mo</span></div>
+                    <p class="price-desc">Get started — no card needed</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 5 mock interviews/month</li>
+                        <li><i class="fas fa-check"></i> Resume analysis (1/month)</li>
+                        <li><i class="fas fa-check"></i> Basic AI feedback</li>
+                        <li><i class="fas fa-check"></i> Progress dashboard</li>
+                        <li><i class="fas fa-check"></i> 2 company profiles</li>
+                    </ul>
+                    <a href="interview.html" class="btn btn-secondary">Get Started Free</a>
+                </div>
+                <div class="pricing-card glass-card featured reveal">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$9<span>/mo</span></div>
+                    <p class="price-desc">For serious interview prep</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited mock interviews</li>
+                        <li><i class="fas fa-check"></i> Unlimited resume analysis</li>
+                        <li><i class="fas fa-check"></i> All company profiles</li>
+                        <li><i class="fas fa-check"></i> System design evaluator</li>
+                        <li><i class="fas fa-check"></i> AI career roadmap</li>
+                        <li><i class="fas fa-check"></i> DSA practice loop</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                    </ul>
+                    <a href="interview.html" class="btn btn-primary">Start Pro Trial</a>
+                </div>
+                <div class="pricing-card glass-card reveal">
+                    <h3>Campus</h3>
+                    <div class="price">$29<span>/mo</span></div>
+                    <p class="price-desc">For colleges & coding clubs</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Up to 50 students</li>
+                        <li><i class="fas fa-check"></i> Batch analytics</li>
+                        <li><i class="fas fa-check"></i> Custom question banks</li>
+                        <li><i class="fas fa-check"></i> Placement cell dashboard</li>
+                        <li><i class="fas fa-check"></i> Dedicated support</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>Ready to Ace Your Next <span class="gradient-text">Interview?</span></h2>
+                <p>Join 50,000+ candidates who've transformed their interview performance with AI.</p>
+                <div class="cta-actions">
+                    <a href="interview.html" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Start Free
+                        Interview</a>
+                    <a href="resume.html" class="btn btn-secondary btn-lg"><i class="fas fa-file-alt"></i> Analyze
+                        Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                        <span>Interview<span class="gradient-text">AI</span></span>
+                    </a>
+                    <p>Your complete AI interview coach. From resume to offer letter.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a href="interview.html">Mock Interview</a>
+                    <a href="resume.html">Resume Analysis</a>
+                    <a href="practice.html">Practice Problems</a>
+                    <a href="system-design-eval.html">System Design</a>
+                    <a href="roadmap.html">Career Roadmap</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Dashboard</h4>
+                    <a href="dashboard.html">Overview</a>
+                    <a href="dashboard.html">Progress Charts</a>
+                    <a href="dashboard.html">Session History</a>
+                    <a href="dashboard.html">Achievements</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 InterviewAI. All rights reserved.</span>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
